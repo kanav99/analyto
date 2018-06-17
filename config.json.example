@@ -1,0 +1,15 @@
+{
+	"firebase_project": "<FIREBASE-PROJECT-NAME-USED-FOR-DB>",
+	"website_hostname": "www.example.com",
+	"analyto_admins": {
+		"<ADMIN_USERNAME_1>": {
+			"pass": "<PASSWORD>",
+			"hash": "<MD5_OF_PASSWORD>"
+		},
+		"<ADMIN_USERNAME_2>": {
+			"pass": "<PASSWORD>",
+			"hash": "<MD5_OF_PASSWORD>"
+		}
+	},
+	"https": true if website if https else false
+}

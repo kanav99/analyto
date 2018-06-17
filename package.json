@@ -1,0 +1,20 @@
+{
+  "name": "analyto",
+  "version": "1.0.0",
+  "description": "personal analytics software for your website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "kanav99",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "firebase-admin": "^5.12.1"
+  }
+}
