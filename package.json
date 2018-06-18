@@ -15,6 +15,7 @@
     "cors": "^2.8.4",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "firebase-admin": "^5.12.1"
+    "firebase-admin": "^5.12.1",
+    "request": "^2.87.0"
   }
 }

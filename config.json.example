@@ -11,5 +11,7 @@
 			"hash": "<MD5_OF_PASSWORD>"
 		}
 	},
-	"https": true if website if https else false
+	"https": true if website if https else false,
+	"mapbox_api_key": "<MAPBOX_API_KEY>",
+	"ipstack_api_key": "<IPSTACK_API_KEY>"
 }

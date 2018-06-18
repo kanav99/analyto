@@ -2,6 +2,14 @@
 
 Personally Hosted Analytics system for small projects
 
+![Dashboard](screenshots/dashboard.png?raw=true "Dashboard")
+
+## Dependencies
+You need the accounts of the following services and get the respective keys
+1. Firebase (Private access key)
+2. MapBox (API Key)
+3. IPStack (API Key)
+
 ## Setup Instructions
 1. Copy `config.json.example` as `config.json` and edit accordingly.
 2. In `client.js` edit the third last line with the domain of the analytics server
@@ -12,3 +20,4 @@ Personally Hosted Analytics system for small projects
 	```
 	<script src="<ANALYTICS_DOMAIN>/client.js"></script>
 	```
+7. Place the MapBox API key in the required places in `public/js/map.js`
