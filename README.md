@@ -2,6 +2,8 @@
 
 Personally Hosted Analytics system for small projects
 
+![Dashboard](screenshots/dashboard.png?raw=true "Dashboard")
+
 ## Dependencies
 You need the accounts of the following services and get the respective keys
 1. Firebase (Private access key)
