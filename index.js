@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var firebase = require('firebase-admin');
 var cors = require('cors');
 var fs = require('fs');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var request = require('request');
 
 // Express Middlewares and Options
 var app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.options('/log', cors());
 app.set('view engine', 'ejs');
 app.use(cookieParser());
+app.use(express.static('public'));
 
 //Configuration Object
 var config = require("./config.json")
@@ -48,6 +50,15 @@ function revisit (user, data, ip) {
 	});
 	firebase.database().ref('users').child(user).child('last_visit').set(Date.now());
 	firebase.database().ref('users').child(user).child('last_ip').set(ip);
+	request('http://api.ipstack.com/' + ip + '?access_key=' + config.ipstack_api_key + '&fields=longitude,latitude', function (error, response, body) {
+	    if (!error && response.statusCode == 200) {
+	    	var json = JSON.parse(body)
+	      	firebase.database().ref('users/' + user + '/last_location').set({
+				longitude: json.longitude,
+				latitude: json.latitude
+			})
+	    }
+	})
 }
 
 // Function to add a new user to the database 
@@ -60,6 +71,15 @@ function newuser(data) {
 	data.visits = 1;
 	data.last_visit = Date.now();
 	firebase.database().ref('users/' + id).set(data);
+	request('http://api.ipstack.com/' + data.last_ip + '?access_key=' + config.ipstack_api_key + '&fields=longitude,latitude', function (error, response, body) {
+	    if (!error && response.statusCode == 200) {
+	    	var json = JSON.parse(body)
+	      	firebase.database().ref('users/' + id + '/last_location').set({
+				longitude: json.longitude,
+				latitude: json.latitude
+			})
+	    }
+	})
 	return id;
 }
 
@@ -161,12 +181,23 @@ app.get('/stats', function(req, res) {
 		res.redirect('/');
 	var unique_visitors = 0;
 	var views = 0;
+	var points = [];
 	firebase.database().ref('users/').once('value', function(snap) {
 		snap.forEach(function (child) {
 			unique_visitors++;
 			views += child.val().visits;
+			points.push(child.val().last_location);
 		});
-		res.render('index', { unique_visitors, views });
+		firebase.database().ref('page_wise_visits/').once('value', function(snap2) {
+			var pages_data = [];
+			snap2.forEach(function (vis_page) {
+				pages_data.push({
+					name: vis_page.key,
+					visits: vis_page.val()
+				})
+			})
+			res.render('index', { unique_visitors, views, points, pages_data });
+		})
 	});
 });
 
