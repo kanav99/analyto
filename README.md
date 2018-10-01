@@ -1,16 +1,18 @@
 # Analyto
 
-Personally Hosted Analytics system for small projects
+Personally Hosted Analytics system for small projects. Based on Node.js. Easy to set up, easy to use.
 
-![Dashboard](screenshots/dashboard.png?raw=true "Dashboard")
+<img src="screenshots/dashboard.png?raw=true" alt="drawing" width="600px"/>
 
 ## Dependencies
+
 You need the accounts of the following services and get the respective keys
 1. Firebase (Private access key)
 2. MapBox (API Key)
 3. IPStack (API Key)
 
 ## Setup Instructions
+
 1. Copy `config.json.example` as `config.json` and edit accordingly.
 2. In `client.js` edit the third last line with the domain of the analytics server
 3. Place your firebase key `json` file in root of project as `firebase-key.json`
