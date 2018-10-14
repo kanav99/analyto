@@ -1,7 +1,7 @@
 {
   "name": "analyto",
   "version": "1.0.0",
-  "description": "personal analytics software for your website",
+  "description": "personally hosted analytics software for your website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
